@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fyeris - Interactive Profile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- 外部CSSファイルの読み込み (css/style.css) -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="text-slate-800 relative min-h-screen overflow-x-hidden selection:bg-pink-500 selection:text-white">
+
+    <!-- 背景ビデオ (全画面自動ループ再生) -->
+    <div class="video-background-container">
+        <video autoplay loop muted playsinline id="bgVideo" class="video-background">
+            <source src="img/video.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="glass-header text-white shadow-xl py-8 px-4 sm:px-8 mb-8 relative z-10 transition-all duration-300">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-6">
+            <!-- img/ フォルダ内の人物像イラストを配置 -->
+            <div class="relative group cursor-pointer" id="profileContainer">
+                <img src="img/profile.jpg" alt="fyeris プロフィール画像" class="profile-img w-32 h-32 rounded-full border-4 border-white/90 shadow-2xl object-cover">
+                <span class="absolute -bottom-1 -right-1 bg-yellow-400 text-xs px-2.5 py-1 rounded-full font-bold text-slate-900 shadow-md transform group-hover:scale-110 transition">LV.99 🎮</span>
+            </div>
+            
+            <div class="text-center sm:text-left flex-1">
+                <div class="flex items-center justify-center sm:justify-start gap-3 flex-wrap">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight drop-shadow-md font-maru">fyeris</h1>
+                    <button id="fortuneBtn" class="bg-white/20 hover:bg-white/30 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-md transition border border-white/30 flex items-center gap-1 active:scale-95">
+                        ✨ 今日の運勢を引く
+                    </button>
+                </div>
+                <p class="text-indigo-100 mt-2 text-sm sm:text-base font-medium leading-relaxed">
+                    HTMLプログラミング / コード / 新しいコードへの探求が趣味です。<br>
+                    <span class="text-xs text-yellow-200">💡 画面のあちこちをクリックすると何かが起きるかも...？</span>
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-8 pb-16 space-y-10 relative z-10">
+
+        <!-- 基本プロフィールセクション -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 backdrop-blur-xl">
+            <h2 class="text-2xl font-bold text-slate-900 border-b border-indigo-100/40 pb-3 mb-6 flex items-center justify-between">
+                <span class="flex items-center gap-2"><span class="text-indigo-600">📋</span> 基本プロフィール</span>
+                <span class="text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-semibold">Hover Me!</span>
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse custom-table">
+                    <thead>
+                        <tr class="bg-indigo-500/10 text-indigo-950 uppercase text-xs tracking-wider">
+                            <th class="py-3 px-4 rounded-l-xl">項目</th>
+                            <th class="py-3 px-4 rounded-r-xl">詳細情報</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200/40 text-sm sm:text-base">
+                        <tr class="hover-fun">
+                            <td class="py-4 px-4 font-bold text-slate-800">所属</td>
+                            <td class="py-4 px-4 text-slate-700 font-medium">大学 🎓</td>
+                        </tr>
+                        <tr class="hover-fun">
+                            <td class="py-4 px-4 font-bold text-slate-800">得意な言語・技術</td>
+                            <td class="py-4 px-4 text-slate-700 font-medium">
+                                <span class="inline-block bg-orange-100 text-orange-700 px-2.5 py-0.5 rounded-md text-xs font-bold mr-1">HTML</span>
+                                <span class="inline-block bg-blue-100 text-blue-700 px-2.5 py-0.5 rounded-md text-xs font-bold mr-1">CSS</span>
+                                <span class="inline-block bg-yellow-100 text-yellow-800 px-2.5 py-0.5 rounded-md text-xs font-bold">JavaScript</span>
+                            </td>
+                        </tr>
+                        <tr class="hover-fun">
+                            <td class="py-4 px-4 font-bold text-slate-800">趣味・関心</td>
+                            <td class="py-4 px-4 text-slate-700 font-medium">ゲーム開発 🎮、AIコード 🤖、UIの探求 🎨</td>
+                        </tr>
+                        <tr class="hover-fun">
+                            <td class="py-4 px-4 font-bold text-slate-800">一言メッセージ</td>
+                            <td class="py-4 px-4 text-slate-700 font-medium">趣味でWebやゲームを開発します。遊んでいってください！🚀</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- スケジュール表セクション -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 backdrop-blur-xl">
+            <h2 class="text-2xl font-bold text-slate-900 border-b border-indigo-100/40 pb-3 mb-6 flex items-center gap-2">
+                <span class="text-indigo-600">🗓️</span> 週間スケジュール 
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse custom-table">
+                    <thead>
+                        <tr class="bg-indigo-500/10 text-indigo-950 uppercase text-xs tracking-wider">
+                            <th class="py-3 px-4 rounded-l-xl">曜日</th>
+                            <th class="py-3 px-4">午前</th>
+                            <th class="py-3 px-4">午後</th>
+                            <th class="py-3 px-4 rounded-r-xl">夜・自由時間</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200/40 text-sm sm:text-base">
+                        <tr>
+                            <td class="py-3.5 px-4 font-bold text-slate-800">月曜日</td>
+                            <td class="py-3.5 px-4 text-slate-600">大学の講義 📚</td>
+                            <td class="py-3.5 px-4 text-slate-600">大学の講義 / 課題</td>
+                            <td class="py-3.5 px-4 text-indigo-600 font-semibold">プログラミング学習 💻</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3.5 px-4 font-bold text-slate-800">火曜日</td>
+                            <td class="py-3.5 px-4 text-slate-600">大学の講義 📚</td>
+                            <td class="py-3.5 px-4 text-slate-600">自習・研究 🔬</td>
+                            <td class="py-3.5 px-4 text-purple-600 font-semibold">ゲーム開発 🕹️</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3.5 px-4 font-bold text-slate-800">水曜日</td>
+                            <td class="py-3.5 px-4 text-slate-600">大学の講義 📚</td>
+                            <td class="py-3.5 px-4 text-slate-600">自主学習 ✨</td>
+                            <td class="py-3.5 px-4 text-pink-600 font-semibold">UI・デザイン探求 🎨</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3.5 px-4 font-bold text-slate-800">木曜日</td>
+                            <td class="py-3.5 px-4 text-slate-600">大学の講義 📚</td>
+                            <td class="py-3.5 px-4 text-slate-600">自習・課題 📝</td>
+                            <td class="py-3.5 px-4 text-indigo-600 font-semibold">コード打ち ⌨️</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3.5 px-4 font-bold text-slate-800">金曜日</td>
+                            <td class="py-3.5 px-4 text-slate-600">大学の講義 📚</td>
+                            <td class="py-3.5 px-4 text-slate-600">自由活動 ☕</td>
+                            <td class="py-3.5 px-4 text-emerald-600 font-semibold">Web開発・趣味 🚀</td>
+                        </tr>
+                        <tr class="bg-amber-500/10">
+                            <td class="py-3.5 px-4 font-bold text-amber-900">土曜日</td>
+                            <td class="py-3.5 px-4 text-amber-800 font-medium" colspan="2">趣味ゲーム 🎮💥</td>
+                            <td class="py-3.5 px-4 text-amber-800 font-medium">リフレッシュ / 自由 🍕</td>
+                        </tr>
+                        <tr class="bg-amber-500/10">
+                            <td class="py-3.5 px-4 font-bold text-amber-900">日曜日</td>
+                            <td class="py-3.5 px-4 text-amber-800 font-medium" colspan="2">休息・趣味のゲーム 🛌🎮</td>
+                            <td class="py-3.5 px-4 text-amber-800 font-medium">次週の準備 🔋</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- インタラクティブミニゲームセクション -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 backdrop-blur-xl text-center relative overflow-hidden">
+            <h2 class="text-2xl font-bold text-slate-900 mb-2 font-maru">🎯 バグ退治ミニゲーム！</h2>
+            <p class="text-slate-600 text-sm mb-6">画面に出現する「👾 バグ」を制限時間内にクリックして退治しよう！</p>
+            
+            <div id="gameArea" class="h-48 bg-slate-900/40 rounded-2xl border-2 border-dashed border-indigo-300/50 flex items-center justify-center relative overflow-hidden">
+                <button id="startGameBtn" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-indigo-600 text-white font-bold rounded-full shadow-lg hover:scale-105 transition active:scale-95">
+                    ゲームスタート 🚀
+                </button>
+                <div id="gameScore" class="hidden absolute top-4 left-4 text-white font-extrabold text-lg">SCORE: <span id="scoreVal">0</span></div>
+                <div id="gameTimer" class="hidden absolute top-4 right-4 text-yellow-300 font-extrabold text-lg">TIME: <span id="timerVal">10</span>s</div>
+            </div>
+        </section>
+
+        <!-- お問い合わせセクション -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 backdrop-blur-xl">
+            <h2 class="text-2xl font-bold text-slate-900 border-b border-indigo-100/40 pb-3 mb-6 flex items-center gap-2">
+                <span class="text-indigo-600">✉️</span> お問い合わせ・メッセージ
+            </h2>
+            
+            <form onsubmit="handleSubmit(event)" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="nameInput" class="block text-sm font-semibold text-slate-800 mb-1 cursor-pointer">お名前 (Name)</label>
+                        <input type="text" id="nameInput" required placeholder="例：山田 太郎" class="w-full px-4 py-3 rounded-2xl border border-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-800 transition bg-white/70 backdrop-blur-md shadow-inner">
+                    </div>
+
+                    <div>
+                        <label for="emailInput" class="block text-sm font-semibold text-slate-800 mb-1 cursor-pointer">メールアドレス (Email)</label>
+                        <input type="email" id="emailInput" required placeholder="例：taro@example.com" class="w-full px-4 py-3 rounded-2xl border border-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-800 transition bg-white/70 backdrop-blur-md shadow-inner">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="topicSelect" class="block text-sm font-semibold text-slate-800 mb-1 cursor-pointer">お問い合わせ種別</label>
+                    <select id="topicSelect" class="w-full px-4 py-3 rounded-2xl border border-white/50 bg-white/70 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-800 transition shadow-inner">
+                        <option value="work">お仕事の依頼 💼</option>
+                        <option value="chat">技術的な情報交換 💬</option>
+                        <option value="game">一緒にゲームしよう 🎮</option>
+                        <option value="other">その他 🌟</option>
+                    </select>
+                </div>
+
+                <div>
+                    <span class="block text-sm font-semibold text-slate-800 mb-2">どちらでこのページを知りましたか？</span>
+                    <div class="flex flex-wrap gap-4 bg-white/40 p-3 rounded-2xl border border-white/40">
+                        <label class="flex items-center gap-2 cursor-pointer text-sm text-slate-800 font-medium">
+                            <input type="radio" name="source" value="sns" class="text-indigo-600 focus:ring-indigo-500" checked> SNS 🐦
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-sm text-slate-800 font-medium">
+                            <input type="radio" name="source" value="search" class="text-indigo-600 focus:ring-indigo-500"> 検索エンジン 🔍
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-sm text-slate-800 font-medium">
+                            <input type="radio" name="source" value="friend" class="text-indigo-600 focus:ring-indigo-500"> 知人の紹介 🤝
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="messageTextarea" class="block text-sm font-semibold text-slate-800 mb-1 cursor-pointer">メッセージ内容 (Message)</label>
+                    <textarea id="messageTextarea" rows="4" required placeholder="メッセージをご記入ください..." class="w-full px-4 py-3 rounded-2xl border border-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-800 transition bg-white/70 backdrop-blur-md shadow-inner"></textarea>
+                </div>
+
+                <div class="text-center sm:text-left">
+                    <button type="submit" class="w-full sm:w-auto px-10 py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-extrabold rounded-2xl shadow-xl hover:shadow-indigo-500/30 transition duration-300 active:scale-95 transform hover:-translate-y-0.5">
+                        送信する 🚀
+                    </button>
+                </div>
+            </form>
+            
+            <div id="successMessage" class="hidden mt-6 p-4 bg-emerald-500/90 text-white rounded-2xl text-sm font-bold shadow-lg animate-bounce text-center">
+                🎉 メッセージが正常に送信されました！ご対応ありがとうございます。
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 text-slate-200 text-sm border-t border-white/10 bg-slate-900/60 backdrop-blur-md relative z-10">
+        <p>&copy; 2026 fyeris. Built with passion & fun. ⚡</p>
+    </footer>
+
+    <!-- JSファイルの読み込み (js/script.js) -->
+    <script src="js/script.js"></script>
+</body>
+</html>

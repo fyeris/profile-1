@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+body {
+font-family: 'Plus Jakarta Sans', 'Zen Maru Gothic', sans-serif;
+margin: 0;
+padding: 0;
+overflow-x: hidden;
+position: relative;
+background-color: #0f172a; /* 動画読み込み前のバックアップカラー */
+}
+
+/* --- 背景ビデオスタイル --- */
+.video-background-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+overflow: hidden;
+z-index: 0;
+pointer-events: none;
+}
+
+.video-background {
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: brightness(0.85) contrast(1.05);
+}
+
+.video-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+/* 視認性向上のグラデーションオーバーレイ */
+background: radial-gradient(circle, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.7) 100%);
+}
+
+/* --- Glassmorphism Card Style --- */
+.glass-card {
+background: rgba(255, 255, 255, 0.75);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border: 1px solid rgba(255, 255, 255, 0.5);
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.glass-card:hover {
+transform: translateY(-6px) scale(1.005);
+box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Glass Header --- */
+.glass-header {
+background: rgba(30, 27, 75, 0.75);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --- プロフィール画像アニメーション --- */
+.profile-img {
+transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
+}
+
+.profile-img:hover {
+transform: scale(1.1) rotate(6deg);
+box-shadow: 0 0 25px rgba(236, 72, 153, 0.6);
+}
+
+/* --- テーブル行アニメーション --- */
+.custom-table tr {
+transition: all 0.25s ease;
+}
+
+.custom-table tbody tr:hover {
+background-color: rgba(255, 255, 255, 0.6);
+transform: scale(1.01) translateX(4px);
+}
+
+/* --- クリック時パーティクルアニメーション --- */
+.click-particle {
+position: fixed;
+pointer-events: none;
+z-index: 9999;
+font-size: 20px;
+user-select: none;
+animation: floatAndFade 1s forwards ease-out;
+}
+
+@keyframes floatAndFade {
+0% {
+opacity: 1;
+transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+}
+100% {
+opacity: 0;
+transform: translate(-50%, -120px) scale(1.5) rotate(45deg);
+}
+}
